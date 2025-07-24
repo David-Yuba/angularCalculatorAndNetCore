@@ -1,0 +1,6 @@
+<form>
+  <textarea [formControl]="exp" name="expression" id="expressionInput" placeholder="Input your expression"></textarea>
+  <button (click) = "sendExp()" type="button">Calculate</button>
+</form>
+<app-common-symbols [controlExp]="exp"/>
+<app-expression-examples [controlExp]="exp"/>

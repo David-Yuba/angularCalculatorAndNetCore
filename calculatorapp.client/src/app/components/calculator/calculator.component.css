@@ -1,0 +1,26 @@
+/*
+Media breakpoints
+X-Small 	None 	<576px
+Small 	sm 	≥576px
+Medium 	md 	≥768px
+Large 	lg 	≥992px
+Extra large 	xl 	≥1200px
+Extra extra large 	xxl 	≥1400px
+*/
+
+
+:host {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  background-color: whitesmoke;
+}
+
+
+@media screen and (min-width: 768px) {
+  :host {
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
