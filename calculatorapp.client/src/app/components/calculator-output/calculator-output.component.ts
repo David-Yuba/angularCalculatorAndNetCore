@@ -11,11 +11,10 @@ import { ExpressionValueService} from '../../services/expression-value.service';
 export class CalculatorOutputComponent {
   constructor(private expression: ExpressionValueService) {}
 
-  exp: string | undefined = undefined;
-  res: number | null = null;
+  output: number | null = null;
   ngOnInit() {
     this.expression.expression$.subscribe(e => {
-      
+      this.output = e;
     });
   }
 

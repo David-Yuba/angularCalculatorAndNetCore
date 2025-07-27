@@ -15,12 +15,11 @@ import { ParserApiService } from "../../services/parser-api.service";
 })
 export class CalculatorInputComponent {
   exp = new FormControl('');
-  result: number | null = null;
   constructor (private expression: ExpressionValueService, private parser: ParserApiService ){}
 
   sendExp() {
     if (this.exp.value != null) this.parser.sendExp(this.exp.value).subscribe({
-      next: (res) => { this.result = res; console.log(this.result) },
+      next: (res) => { this.expression.setResult(res);},
       error: (err) => console.error(err)
     });
   }

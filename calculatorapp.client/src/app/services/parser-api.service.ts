@@ -9,6 +9,6 @@ export class ParserApiService {
   constructor(private http: HttpClient) { }
 
   sendExp(exp: string) {
-    return this.http.post<number>(this.apiUrl, { exp });
+    return this.http.post<number>(this.apiUrl, { value: exp });
   }
 }

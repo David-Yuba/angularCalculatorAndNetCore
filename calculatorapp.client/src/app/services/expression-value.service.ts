@@ -5,10 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ExpressionValueService {
-  private expression = new BehaviorSubject<string>("");
+  private expression = new BehaviorSubject<number>(0);
   expression$ = this.expression.asObservable();
-  res: number | null = null;
-  setExpression(newExpression: string) {
-    this.expression.next(newExpression)
+  setResult(result: number) {
+    this.expression.next(result);
   }
 }

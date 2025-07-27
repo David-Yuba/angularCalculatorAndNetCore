@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 namespace CalculatorApp.Server.Controllers
 {
     [ApiController]
@@ -9,15 +8,10 @@ namespace CalculatorApp.Server.Controllers
         [HttpPost]
         public IActionResult ParseString([FromBody] Expression input)
         {
-            if (string.IsNullOrWhiteSpace(input.Exp))
+            if (string.IsNullOrWhiteSpace(input.Value))
                 return BadRequest("Input cannot be empty");
-            int result = input.Exp.Length;
+            float result = input.Calculate();
             return Ok(result);
         }
-    }
-
-    public class Expression
-    {
-        public string Exp { get; set; }
     }
 }
