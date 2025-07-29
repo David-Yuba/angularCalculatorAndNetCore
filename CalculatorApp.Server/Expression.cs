@@ -13,11 +13,20 @@ namespace CalculatorApp.Server
             Debug.WriteLine($"Input: {value}");
             InfixToPolish(value);
         }
-        public float Calculate() 
+        public double? Calculate() 
         {
-            float res;
+            double res;
+            Stack<Sym> stack = new();
 
-            res = this.Value.Length;
+            if (PolishNotation != null)
+                foreach (var item in PolishNotation)
+                {
+                    if (!item.IsOperator) stack.Push(item);
+                    else stack.Push(new Sym((float)CallOperation(stack.Pop().Value, stack.Pop().Value, (int)item.Value),false));
+                }
+            else return null;
+
+            res = stack.Pop().Value;
 
             return res;
         }
@@ -148,6 +157,24 @@ namespace CalculatorApp.Server
                     return '-';
                 case (int)Symbols.Division:
                     return '/';
+                default:
+                    return 0;
+            }
+        }
+        private static double CallOperation(float o1, float o2, int o)
+        {
+            switch (o)
+            {
+                case (int)Symbols.Addition:
+                    return o1 + o2;
+                case (int)Symbols.Multiplication:
+                    return o1 * o2;
+                case (int)Symbols.Exponentiation:
+                    return Math.Pow((double)o2, (double)o1);
+                case (int)Symbols.Subtraction:
+                    return o2 - o1;
+                case (int)Symbols.Division:
+                    return o2 / o1;
                 default:
                     return 0;
             }

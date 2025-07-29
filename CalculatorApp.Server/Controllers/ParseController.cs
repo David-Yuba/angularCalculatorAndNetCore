@@ -10,7 +10,7 @@ namespace CalculatorApp.Server.Controllers
         {
             if (string.IsNullOrWhiteSpace(input.Value))
                 return BadRequest("Input cannot be empty");
-            float result = input.Calculate();
+            double? result = input.Calculate();
             return Ok(result);
         }
     }
